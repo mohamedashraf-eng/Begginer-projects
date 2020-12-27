@@ -39,10 +39,12 @@ switch(uc){
     operation = (x + y);
     system("cls"); printf("\n [%.2f] + [%.2f] = %.2f\n",x,y,operation); // result.
     printf("\n Again ?(y/n) ::  "); scanf(" %c",&z);system("cls"); // user choice.
-    if( z == 'n') {system("cls");printf("\n Try another operation or leave ?(t/l)");printf("\n Enter :: " );scanf("%s",&toption);
+    if( z == 'n') {system("cls");};
+    labelc1:
+    printf("\n Try another operation or leave ?(t/l)");printf("\n Enter :: " );scanf("%s",&toption);
     if(toption == 't' || toption == 'T') {system("cls");goto label1;} // end if 2
     else if (toption == 'l' || toption == 'L') {system("cls");printf("\n Ok,Bye !");outro();exit(0);} // end if 3
-  } // No 1- option , end if 1
+    else {printf("\n Please enter a valid option.\n");sleep(1);system("cls");goto labelc1;}
 } // while loop_1
     break;
 case 2 : system("cls");printf("\n Let's GO !\n");
@@ -53,9 +55,11 @@ while(z = 'y'){ //======== nested while for quiz.
   operation = (x - y);
   system("cls"); printf("\n [%.2f] - [%.2f] = %.2f\n",x,y,operation); // result.
   if(z == 'n' || z == 'N') {system("cls");}
+  labelc2:
   printf("\n Try another operation or leave ?(t/l)");printf("\n Enter :: ");scanf("%s",&toption);
   if(toption == 't' || toption == 'T') {system("cls");goto label1;} // end if 2
   else if (toption == 'l' || toption == 'L') {system("cls");printf("\n Ok,Bye !\n");outro();exit(0);} // end if 3
+  else {printf("\n Please enter a valid option.\n");sleep(1);system("cls");goto labelc2;}
 } //end while 2.
   break;
 

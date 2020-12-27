@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <windows.h>
+#include <conio.h>
 // =========== {program start} ==========
 
 void intro();
@@ -14,6 +15,7 @@ int main(void){
    char ready = '\0' , z = '\0',ready1 = '\0',toption = '\0',foption = '\0'; // cm = condition making.
    float x = 0 , y = 0 ,operation = 0;
    uint8_t uc = 0;
+   //==== Processing ====
 label:
   while(ready = 'y'){  //======== main while.for ready.
     printf("\n Are you ready ? (y/n)");printf("\n Enter :: "); scanf("%s",&ready); system("cls"); //ready question.
@@ -45,15 +47,15 @@ switch(uc){
     break;
 case 2 : system("cls");printf("\n Let's GO !\n");
 while(z = 'y'){ //======== nested while for quiz.
-  printf("\n Enter 2 number to substract.");
+  printf("\n Enter 2 number to subtract.");
    printf("\n Number[1] :: "); scanf(" %f",&x); // num 1.
    printf("\n Number[2] :: "); scanf(" %f",&y); // num 2.
   operation = (x - y);
   system("cls"); printf("\n [%.2f] - [%.2f] = %.2f\n",x,y,operation); // result.
-  if( z == 'n') {system("cls");printf("\n Try another operation or leave ?(t/l)");printf("\n Enter :: ");scanf("%s",&toption);
+  if(z == 'n' || z == 'N') {system("cls");}
+  printf("\n Try another operation or leave ?(t/l)");printf("\n Enter :: ");scanf("%s",&toption);
   if(toption == 't' || toption == 'T') {system("cls");goto label1;} // end if 2
-  else if (toption == 'l' || toption == 'L') {system("cls");printf("\n Ok,Bye !");outro();exit(0);} // end if 3
-  } // end if 1.
+  else if (toption == 'l' || toption == 'L') {system("cls");printf("\n Ok,Bye !\n");outro();exit(0);} // end if 3
 } //end while 2.
   break;
 

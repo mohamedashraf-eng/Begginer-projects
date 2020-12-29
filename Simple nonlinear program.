@@ -1,0 +1,169 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h>
+#include <windows.h>
+#include <conio.h>
+// =========== {program start} ==========
+#define BKSP 8
+#define ENTER 13
+#define ESC 27
+#define SP 32
+#define TAB 9
+// =================
+void intro();
+void outro();
+void user_welcome();
+// ------ main --------
+int main(void){system("color 04");
+  //Declarations
+   char ready = '\0' ,option = '\0',z = '\0',ready1 = '\0',toption = '\0',foption = '\0',ui1 = '\0'; // cm = condition making.
+   float x = 0 , y = 0 ,operation = 0;
+   uint8_t uc = 0 , uir = 0;
+   //DB secotion.
+   uint8_t length = 15, charp = 0;
+   char username ,spw, password[length+1]; // input username &password
+   char r_un = '\0',r_pw = '\0',DB_c = '\0'; // registers for storing.
+   //====================================================================
+   intro();
+   //---------------------------------->DB_Processing<----------------------------------
+   labelx: // label for resest.===============
+   printf("\n Enter your Username & Password.\n \t [Note: Password should be less than 15 digits] \n \t#No_spaces.\n");sleep(3);printf(sd(20));system("cls");
+   labelx0:
+   printf("\n Username :: ");scanf("%s",&username);
+   labelx1: // label for reset password & re enter.=============
+   printf("\n Password :: ");
+   while(1){
+     spw = getch(); // getting the user input [password].
+     if(spw == ENTER) {password[charp] = '\0';break;} // enter button.
+     else if(spw == BKSP){if(charp > 0){charp--; password[charp] = '\0';printf("\b \b");}/*nested if end*/} // backspace button.
+     else if(spw == TAB || spw == SP) continue; // space & tab button.
+     else if(charp > length){sleep(2);system("cls");printf("\n Your password is > 15 digits.\n");sleep(2);printf(sd(20));goto labelx;exit(0);} // if the password is max than 15 digit.
+     else {password[charp] = spw; charp++ ;printf("*");} // reading&writing the password.
+   }/* end while */ system("cls");
+   password[charp] = '\0';
+   if(strlen(password) == 0){system("cls");printf("\n\n please enter your password right.\n");sleep(1/2);goto labelx1;} //all is okay.
+   else {length = charp;printf("\n\n Your password is : %s \t \t [length : %d]\n",password,length);} sleep(2); // password is wrong.
+   system("cls");printf(sd(10));
+   printf("\n Save this username and password?(y/n)."); DB_c = _getch();
+   if(DB_c == 'y' || DB_c == 'Y'){system("cls");printf("\nSaved!.\n");sleep(2);system("cls");goto label;}
+   else if(DB_c == 'n' || DB_c == 'N'){system("cls");printf(sd(10));printf("\n Reset or leave?(r/l).");} ui1 = _getch();
+   if(ui1 == 'r' || ui1 == 'R'){system("cls");printf("\n Alright!");goto labelx2;}
+   else if(ui1 == 'l' || ui1 == 'L'){system("cls");printf("\nOK! Bye.\n");outro();exit(0);}
+   labelx2: system("cls"); //==========================>
+   printf("\n Reset : \n 1) Username. \n 2) Password.");printf("\n \n Enter :: ");scanf("%d",&uir);printf(sd(20));
+   switch(uir){
+     case 1:system("cls"); printf("\n Alright!\n"); goto labelx0;
+     case 2:system("cls"); printf("\n Alright!\n"); goto labelx1;
+   }
+   // ==== Processing ==============================================
+system("cls");
+//user_welcome();
+label: //=============>
+printf("\n Are you ready?(y/n)");
+   //==== Ready proccess ====
+   while(1){
+   ready = _getch();
+   if(ready == 'y' || ready == 'Y'){system("cls");printf("\n Ok, Let's go!.\n");goto label1;}
+   else if(ready == 'n' || ready == 'N') {system("cls");}
+   else if(ready == BKSP || ready == TAB || ready == SP) {system("cls");printf("\n Error!,Please be sure about you pressing.\n");sleep(2);system("cls");goto label;}
+   else if(ready == ENTER) {system("cls");printf("\n Error!,Don't press ENTER");sleep(2);system("cls");goto label;}
+   else if(ready == ESC) {system("cls");printf("\n Wish you a good day !\n");outro();exit(0);}
+   else {printf("\n Please Enter a valid input.\n");sleep(1);system("cls");}
+    // U_M(ready);
+    printf("\n Ok, press 'r' when you ready. Or 'n' if not.\n"); option = _getch();
+    if(option == 'r'){system("cls");printf("\n Ok! Let's go.\n");goto label1;}
+    else if(option == 'n'){system("cls");printf("\nSee you later !\n");outro();exit(0);}
+    //=== user error section ===
+  } // while for "ready" // ready end
+  label0:
+  while(1){
+   ready1 = _getch();
+ if(ready1 == 'r' || ready1 == 'R') {system("cls");printf("\nOk,here we go.\n");goto label1;} // ready1 condition 1.
+else if(ready1 == 'n' || ready1 == 'N') {system("cls");printf("\nOk, Have a nice time!\n");outro();exit(0);}
+else if(ready1 == BKSP || ready1 == TAB || ready1 == SP) {system("cls");printf("\n Error!,Please be sure about you pressing.\n");sleep(2);system("cls");goto label0;}
+else if(ready1 == ENTER) {system("cls");printf("\n Error!,Don't press ENTER");sleep(2);system("cls");goto label0;}
+else if(ready1 == ESC) {system("cls");printf("\n Wish you a good day !\n");outro();exit(0);}
+else {printf("\n Please Enter a valid input.\n");sleep(1);system("cls");goto label0;}
+}// while 'ready1'
+//Not ready.Exit-
+//============== operations choosing
+ //============>
+ label1:
+ printf("\n What computation proccess do you want ?");printf("\n 1) Add. \n 2) substract.");
+ printf("\n Enter :: ");scanf("%d",&uc);
+if(uc != 1 || uc != 2){system("cls");printf("\nError! , Autoshutdown ",sd());exit(0);}
+//======== Operations
+switch(uc){
+  labelc10: //=======>
+  case 1: system("cls");printf("\n Let's GO !\n");
+  while(z = 'y'){ //======== nested while for quiz.
+    printf("\n Enter 2 number to add.");
+     printf("\n Number[1] :: "); scanf(" %f",&x); // num 1.
+     printf("\n Number[2] :: "); scanf(" %f",&y); // num 2.
+    operation = (x + y);
+    system("cls"); printf("\n [%.2f] + [%.2f] = %.2f\n",x,y,operation); // result.
+    printf("\n Again ?(y/n)");z = _getch();system("cls"); // user choice.
+    if(z == 'y' || z == 'Y'){system("cls");goto labelc10;}
+    if(z == 'n') {system("cls");};
+    labelc1: //======>
+    printf("\n Try another operation or leave ?(t/l)");toption = _getch();
+    if(toption == 't' || toption == 'T') {system("cls");goto label1;} // end if 2
+    else if (toption == 'l' || toption == 'L') {system("cls");printf("\n Ok,Bye !");outro();exit(0);} // end if 3
+    else {printf("\n Please enter a valid option.\n");sleep(1);system("cls");goto labelc1;}
+} // while loop_1
+    break;
+
+    labelc20: //========>
+case 2 : system("cls");printf("\n Let's GO !\n");
+while(z = 'y'){ //======== nested while for quiz.
+  printf("\n Enter 2 number to subtract.");
+   printf("\n Number[1] :: "); scanf(" %f",&x); // num 1.
+   printf("\n Number[2] :: "); scanf(" %f",&y); // num 2.
+  operation = (x - y);
+  system("cls"); printf("\n [%.2f] - [%.2f] = %.2f\n",x,y,operation); // result.
+  printf("\n Again ?(y/n)");z = _getch();system("cls"); // user choice.
+  if(z == 'y' || z == 'Y'){system("cls");goto labelc20;}
+  else if(z == 'n' || z == 'N') {system("cls");}
+  labelc2:  //==========>
+  printf("\n Try another operation or leave ?(t/l)");toption = _getch();
+  if(toption == 't' || toption == 'T') {system("cls");goto labelc20;} // end if 2
+  else if (toption == 'l' || toption == 'L') {system("cls");printf("\n Ok,Bye !\n");outro();exit(0);} // end if 3
+  else {printf("\n Please enter a valid option.\n");sleep(1);system("cls");goto labelc2;}
+} //end while 2.
+  break;
+
+default : system("cls"); printf("\n ### ## Error!.Please enter a valid option. ## ### \n"); sleep(1); goto label1;
+  break;
+} // switch case end.
+return 0;
+}
+
+
+// --------- {sub-Functions} -----------
+void intro(void){
+  printf("\n\t #########- Welcome to my simple 'nlp model' program -########## \n");
+  printf("\n \t\t\t ###~ Eng:Mohamed Ashraf ~### \n");
+  for(uint8_t i = 0; i<=119 ; i++){printf("=");}
+}
+void outro(void){
+  printf("\n #### Credits : \t \n ~ Eng:Mohamed Ashraf ~ ###\n");
+  printf("\n B-Email : gtlyco205@gmail.com\n");
+}
+/*void user_welcome(){
+  printf("\n\n Welcome %s , This is my simple program that user can interact with (nonlinear-P)\n \tNote : {You Can exit the program any time by pressing 'ESC'}.\n Hope you enjoy !\n",username);
+} */
+
+ /*void U_M(char ready){ // User mistakes error handeling
+  if(ready == 'y' || ready == 'Y'){system("cls");printf("\n Ok, Let's go!.\n");goto label1;}
+  else if(ready == 'n' || ready == 'N') {system("cls");}
+  else if(ready == BKSP || ready == TAB || ready == SP) {system("cls");printf("\n Error!,Please be sure about you pressing.\n");sleep(2);system("cls");goto label;}
+  else if(ready == ENTER) {system("cls");printf("\n Error!,Don't press ENTER");sleep(2);system("cls");goto label;}
+  else if(ready == ESC) {system("cls");printf("\n Wish you a good day !\n");outro();exit(0);}
+  else {printf("\n Please Enter a valid input.\n");sleep(1);system("cls");}
+}*/
+void sd(uint8_t time){
+  for(int i = time ; i >= 0 ; i--){
+    printf("%d",i);system("cls");usleep(150);
+  }
+}
